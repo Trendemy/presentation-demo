@@ -5,13 +5,6 @@ terraform {
       version = "~> 5.0"
     }
   }
-  
-  # backend "s3" {
-  #   bucket         = "demo-terraform-state-bucket"
-  #   key            = "infrastructure/terraform.tfstate"
-  #   region         = "us-east-1"
-  #   dynamodb_table = "terraform-state-locks"
-  # }
 }
 
 provider "aws" {
@@ -71,4 +64,3 @@ resource "aws_instance" "web_server" {
     Name = "demo-web-server"
   }
 }
-
