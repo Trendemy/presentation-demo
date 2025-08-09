@@ -13,7 +13,8 @@ provider "aws" {
 
 # Security Group
 resource "aws_security_group" "web_sg" {
-  name_description = "Security group for web server"
+  name        = "demo-web-sg"
+  description = "Security group for web server"
 
   ingress {
     from_port   = 22
@@ -45,7 +46,7 @@ resource "aws_key_pair" "demo_key" {
 
 # EC2 Instance
 resource "aws_instance" "web_server" {
-  ami                    = "ami-0c02fb55956c7d316" # Amazon Linux 2
+  ami                    = "ami-0d8ec96c89ad62005" # Amazon Linux 2
   instance_type          = "t2.micro"
   key_name              = aws_key_pair.demo_key.key_name
   vpc_security_group_ids = [aws_security_group.web_sg.id]
