@@ -25,6 +25,12 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: ${{ secrets.AWS_REGION }}
     
+    - name: Clean up existing resources
+      run: |
+        aws s3 rb s3://demo-terraform-state-bucket --force --region ap-southeast-7 || true
+        aws dynamodb delete-table --table-name terraform-state-locks --region ap-southeast-7 || true
+      continue-on-error: true
+    
     - name: Terraform Init
       run: terraform init
       working-directory: terraform
