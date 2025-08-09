@@ -42,9 +42,3 @@ jobs:
         echo "INSTANCE_IP=$(terraform output -raw instance_public_ip)" >> $GITHUB_ENV
         echo "INSTANCE_ID=$(terraform output -raw instance_id)" >> $GITHUB_ENV
       working-directory: terraform
-    
-    - name: Save SSH key
-      run: |
-        mkdir -p ~/.ssh
-        cp demo-key ~/.ssh/
-        chmod 600 ~/.ssh/demo-key
