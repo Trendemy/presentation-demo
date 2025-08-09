@@ -8,9 +8,3 @@ variable "public_key" {
   description = "Public key for EC2 access"
   type        = string
 }
-
-variable "alert_email" {
-  description = "Email address for alerts"
-  type        = string
-  default     = "hdnguyen3101@gmail.com"
-}
