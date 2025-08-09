@@ -14,7 +14,7 @@ provider "aws" {
 # Security Group
 resource "aws_security_group" "web_sg" {
   name        = "demo-web-sg-${formatdate("YYYYMMDD-hhmm", timestamp())}"
-  description = "Security group for web server"
+  description = "Security group for web server access"
 
   ingress {
     from_port   = 22
