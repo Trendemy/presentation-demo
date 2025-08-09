@@ -13,7 +13,7 @@ provider "aws" {
 
 # Security Group
 resource "aws_security_group" "web_sg" {
-  name        = "demo-web-sg"
+  name        = "demo-web-sg-${formatdate("YYYYMMDD-hhmm", timestamp())}"
   description = "Security group for web server"
 
   ingress {
@@ -40,7 +40,7 @@ resource "aws_security_group" "web_sg" {
 
 # Key Pair
 resource "aws_key_pair" "demo_key" {
-  key_name   = "demo-key"
+  key_name   = "demo-key-${formatdate("YYYYMMDD-hhmm", timestamp())}"
   public_key = var.public_key
 }
 
