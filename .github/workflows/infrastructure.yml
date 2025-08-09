@@ -27,9 +27,23 @@ jobs:
     
     - name: Clean up existing resources
       run: |
-        aws s3 rb s3://demo-terraform-state-bucket --force --region ap-southeast-7 || true
-        aws dynamodb delete-table --table-name terraform-state-locks --region ap-southeast-7 || true
+        # Try multiple regions to find and delete the bucket
+        for region in ap-southeast-7 us-east-1 us-west-2; do
+          aws s3 rb s3://demo-terraform-state-bucket --force --region $region || true
+          aws dynamodb delete-table --table-name terraform-state-locks --region $region || true
+        done
       continue-on-error: true
+    
+    - name: Enable backend
+      run: |
+        # Uncomment the backend configuration
+        sed -i 's/# *backend/  backend/g' main.tf
+        sed -i 's/# *bucket/    bucket/g' main.tf
+        sed -i 's/# *key/    key/g' main.tf
+        sed -i 's/# *region/    region/g' main.tf
+        sed -i 's/# *dynamodb_table/    dynamodb_table/g' main.tf
+        sed -i 's/# *}/  }/g' main.tf
+      working-directory: terraform
     
     - name: Terraform Init
       run: terraform init
