@@ -7,7 +7,8 @@ app.get('/', (req, res) => {
     <html>
       <head><title>IaC Demo</title></head>
       <body style="font-family: Arial; text-align: center; padding: 50px;">
-        <h1>🚀 Infrastructure as Code Demo</h1>
+        <h1>🚀 Infrastructure as Code Demo NTTU</h1>
+        <p>This application is deployed using Terraform and GitHub Actions.</p>
         <p>Successfully deployed via GitHub Actions!</p>
         <p>Server time: ${new Date().toISOString()}</p>
         <p>Environment: ${process.env.NODE_ENV || 'production'}</p>
