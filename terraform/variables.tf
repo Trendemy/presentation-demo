@@ -12,5 +12,5 @@ variable "public_key" {
 variable "alert_email" {
   description = "Email address for alerts"
   type        = string
-  default     = "admin@example.com"
+  default     = "hdnguyen3101@gmail.com"
 }
